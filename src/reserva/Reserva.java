@@ -23,6 +23,7 @@ public class Reserva extends javax.swing.JFrame {
     /**
      * Creates new form Reserva
      */
+
     public Reserva() {
         initComponents();
         try {
@@ -55,6 +56,7 @@ public class Reserva extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Reserva.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
     
     
@@ -83,6 +85,11 @@ public class Reserva extends javax.swing.JFrame {
         jlab_numero_personas1 = new javax.swing.JLabel();
         jlab_numero_personas2 = new javax.swing.JLabel();
         txtMesaDisponible = new javax.swing.JTextField();
+        jlab_numero_personas3 = new javax.swing.JLabel();
+        txtNumReserva = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblDatosReserva = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,12 +120,6 @@ public class Reserva extends javax.swing.JFrame {
         jlab_fecha.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlab_fecha.setText("Fecha");
 
-        jtxt_numero_personas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxt_numero_personasActionPerformed(evt);
-            }
-        });
-
         jtxt_fecha.setText("año/mes/dia");
 
         tblCedulas.setModel(new javax.swing.table.DefaultTableModel(
@@ -141,62 +142,82 @@ public class Reserva extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblMesas);
 
-        txtCedulaDisponible.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCedulaDisponibleActionPerformed(evt);
-            }
-        });
-
         jlab_numero_personas1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlab_numero_personas1.setText("Ingrese una cedula disponible:");
 
         jlab_numero_personas2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jlab_numero_personas2.setText("Ingrese una mesa disponible:");
 
+        jlab_numero_personas3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jlab_numero_personas3.setText("Numero de reserva:");
+
+        jLabel1.setText("Detalles de la reserva");
+
+        tblDatosReserva.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Cédula del cliente", "Numero de personas", "Fecha", "Mesa"
+            }
+        ));
+        jScrollPane3.setViewportView(tblDatosReserva);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 308, Short.MAX_VALUE)
                 .addComponent(jlab_reserva)
                 .addGap(280, 280, 280))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(219, 219, 219)
-                        .addComponent(jbtn_guardarres)
-                        .addGap(103, 103, 103)
-                        .addComponent(jbtn_regresarres))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCedulaDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlab_numero_personas1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 651, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(24, 24, 24)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jlab_numero_personas2)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtMesaDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jlab_numero_personas, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jlab_fecha, javax.swing.GroupLayout.Alignment.LEADING))
-                                    .addGap(52, 52, 52)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jtxt_numero_personas)
-                                        .addComponent(jtxt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                                    .addGap(187, 187, 187)
+                                    .addComponent(jbtn_guardarres)
+                                    .addGap(103, 103, 103)
+                                    .addComponent(jbtn_regresarres))
+                                .addComponent(txtCedulaDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jlab_numero_personas1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jlab_numero_personas2)
+                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtMesaDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jlab_numero_personas3, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtNumReserva, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jlab_numero_personas, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jlab_fecha, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGap(52, 52, 52)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jtxt_numero_personas)
+                                            .addComponent(jtxt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(294, 294, 294)
+                            .addComponent(jLabel1))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jlab_reserva)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jlab_numero_personas3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNumReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtxt_numero_personas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlab_numero_personas))
@@ -222,7 +243,11 @@ public class Reserva extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtn_regresarres)
                     .addComponent(jbtn_guardarres))
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -243,7 +268,7 @@ this.dispose();        // TODO add your handling code here:
             con=DriverManager.getConnection("jdbc:mysql://192.168.130.130/proyecto1reserva","alumno","remoto");
             System.out.println("Base de datos conectada");
             Statement stmt=con.createStatement();
-            stmt.executeUpdate("INSERT INTO reserva VALUES('"+txtCedulaDisponible.getText()+"','"+jtxt_numero_personas.getText()+"','"+jtxt_fecha.getText()+"','"+txtMesaDisponible.getText()+"')");
+            stmt.executeUpdate("INSERT INTO reserva VALUES('"+txtNumReserva.getText()+"','"+txtCedulaDisponible.getText()+"','"+jtxt_numero_personas.getText()+"','"+jtxt_fecha.getText()+"','"+txtMesaDisponible.getText()+"')");
             System.out.println("Registrado correctamente");
         } catch (ClassNotFoundException ex) {
             System.out.println(ex.getException());
@@ -251,18 +276,25 @@ this.dispose();        // TODO add your handling code here:
         catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
-        
-
         JOptionPane.showMessageDialog(null,"La reserva se a registrado correctamente");
+        
+        
+        
+        try {
+            // TODO add your handling code here:
+            DefaultTableModel modelo=(DefaultTableModel)tblDatosReserva.getModel();
+            Connection con=DriverManager.getConnection("jdbc:mysql://192.168.130.130/proyecto1reserva","alumno","remoto");
+            Statement stmt=con.createStatement();
+            ResultSet rs=stmt.executeQuery("SELECT * FROM reserva WHERE id_reserva="+txtNumReserva.getText());
+            rs.first();
+            do{
+                String[] fila={rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)};
+                modelo.addRow(fila);
+            }while(rs.next());
+        } catch (SQLException ex) {
+            Logger.getLogger(Reserva.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jbtn_guardarresActionPerformed
-
-    private void txtCedulaDisponibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaDisponibleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaDisponibleActionPerformed
-
-    private void jtxt_numero_personasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_numero_personasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtxt_numero_personasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,20 +335,25 @@ this.dispose();        // TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton jbtn_guardarres;
     private javax.swing.JButton jbtn_regresarres;
     private javax.swing.JLabel jlab_fecha;
     private javax.swing.JLabel jlab_numero_personas;
     private javax.swing.JLabel jlab_numero_personas1;
     private javax.swing.JLabel jlab_numero_personas2;
+    private javax.swing.JLabel jlab_numero_personas3;
     private javax.swing.JLabel jlab_reserva;
     private javax.swing.JTextField jtxt_fecha;
     private javax.swing.JTextField jtxt_numero_personas;
     private javax.swing.JTable tblCedulas;
+    private javax.swing.JTable tblDatosReserva;
     private javax.swing.JTable tblMesas;
     private javax.swing.JTextField txtCedulaDisponible;
     private javax.swing.JTextField txtMesaDisponible;
+    private javax.swing.JTextField txtNumReserva;
     // End of variables declaration//GEN-END:variables
 }
